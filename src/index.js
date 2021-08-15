@@ -15,7 +15,7 @@ function formatDate(date) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
   let day = days[dayIndex];
   return `${day} ${hour}:${minutes}`;
@@ -34,6 +34,11 @@ function displayWeatherCondition(response) {
   );
   document.querySelector("#weather-description").innerHTML =
     response.data.weather[0].main;
+  let currentWeatherIconElement = document.querySelector("#current-temp-icon");
+  currentWeatherIconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function searchCity(city) {
@@ -70,5 +75,10 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentButton = document.querySelector("#current-info-button");
 currentButton.addEventListener("click", getCurrentLocation);
+
+iconElement.setAttribute(
+  "src",
+  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+);
 
 searchCity("Tucson");

@@ -20,7 +20,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <div class="row clearfix">
         <div class="col-8 city">
           <div class="input-group mb-3">
             <form id="city-form">
@@ -54,7 +54,6 @@
           </button>
         </div>
       </div>
-      <br />
       <div class="row border border-2 border-warning">
         <div class="col-4">
           <h1 class="current-city" id="current-city">Tucson, AZ📍</h1>
@@ -63,13 +62,21 @@
           </h6>
           <h6 id="weather-description">Sunny</h6>
           <h6 class="specifics">
-            Humidity: <span id="humidity">30</span>%
-            <br />
-            Wind: <span id="wind">5</span> km/h
+            <div>Humidity: <span id="humidity">30</span>%</div>
+            <div>Wind: <span id="wind">5</span> km/h</div>
           </h6>
         </div>
         <div class="col-4">
-          <h2 class="current-temp"><span id="current-temp">31</span>°C</h2>
+          <h2 class="current-temp">
+            <span id="current-temp">31</span><span class="units">°C</span
+            ><span class="units-bar"> | </span>
+            <span class="units">°F</span>
+          </h2>
+          <img
+            src="http://openweathermap.org/img/wn/10d@2x.png"
+            alt="rainy"
+            id="current-temp-icon"
+          />
           <h6 class="max-min">
             <ul>
               <li>Max. 37°C</li>
@@ -143,7 +150,11 @@
       </div>
     </div>
     <footer>
-      <a href="https://github.com/sjmoser/moser-shecodesplus-weather">link</a>
+      <a
+        href="https://github.com/sjmoser/moser-shecodesplus-weather"
+        class="github-link"
+        >link</a
+      >
       to GitHub repository
     </footer>
     <script src="src/index.js"></script>

@@ -18,16 +18,20 @@ body {
 
 .btn-warning {
   box-shadow: 2px 2px 7px 1px #f5a741;
-  left: 20px;
-  width: 25%;
-  height: 100%;
+  left: 200px;
+  top: -38px;
+  width: 50%;
+  height: 50%;
+  display: block;
   text-align: center;
 }
 .btn-danger {
   box-shadow: 2px 2px 7px 1px red;
   left: 50px;
-  width: 20%;
-  height: 75%;
+  width: 50%;
+  height: 40%;
+  display: block;
+  text-align: center;
 }
 .current-city {
   font-size: 29px;
@@ -39,7 +43,8 @@ h1,
 .date-time,
 .hourly-forecast,
 ul,
-#weather-description {
+#weather-description,
+footer {
   color: #f5a741;
 }
 .specifics,
@@ -49,7 +54,8 @@ ul,
 .day,
 .date,
 .max-temp,
-.min-temp {
+.min-temp,
+.github-link {
   color: #eb7b55;
 }
 .date-time,
@@ -59,23 +65,31 @@ ul,
 }
 img {
   position: relative;
-  max-height: 75px;
-  margin-bottom: 10px;
+  max-height: 30%;
   text-align: center;
   display: inline;
   left: 20px;
+  top: -20px;
+  padding: 0;
+  margin-bottom: 0;
 }
 .current-temp {
   text-align: center;
   position: relative;
-  font-size: 30px;
+  font-size: 32px;
   left: -15px;
   margin-top: 10px;
   margin-bottom: 20px;
 }
+.units,
+.units-bar {
+  font-size: 15px;
+  position: relative;
+  top: -10px;
+}
 .max-min {
   position: relative;
-  top: 15px;
+  top: -25px;
   left: 15px;
   text-align: center;
   font-size: 20px;
@@ -85,6 +99,7 @@ img {
   left: -15px;
   top: 5px;
   font-size: 25px;
+  padding: 0;
 }
 ul {
   list-style: none;
@@ -127,6 +142,9 @@ ul {
 .max-temp {
   text-align: center;
   font-size: 18px;
+}
+footer {
+  text-align: center;
 }
 .border {
   border-radius: 5%;
