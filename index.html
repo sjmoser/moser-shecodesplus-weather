@@ -31,7 +31,7 @@
                 id="city-input"
               />
               <button
-                class="btn btn-outline-secondary btn-warning"
+                class="btn btn-outline-secondary btn-primary"
                 type="submit"
                 id="search-button"
               >
@@ -45,16 +45,12 @@
           role="group"
           aria-label="Basic mixed styles example"
         >
-          <button
-            type="button"
-            class="btn btn-danger w-100"
-            id="current-info-button"
-          >
+          <button type="button" class="btn btn-info" id="current-info-button">
             Current
           </button>
         </div>
       </div>
-      <div class="row border border-2 border-warning">
+      <div class="row border border-2 border-primary">
         <div class="col-4">
           <h1 class="current-city" id="current-city"></h1>
           <h6 class="date-time">
@@ -109,45 +105,21 @@
             </ul>
           </h4>
         </div>
-      </div>
-      <div class="row">
-        <h3 class="five-day">5-day weather forecast</h3>
-      </div>
-      <div class="row">
-        <div class="col border border-2 border-warning">
-          <div class="day">Thurs</div>
-          <div class="date">1/7</div>
-          <div class="icon">☁️</div>
-          <div class="max-temp">Max. 35°C</div>
-          <div class="min-temp">Min. 30°C</div>
-        </div>
-        <div class="col border border-2 border-warning">
-          <div class="day">Fri</div>
-          <div class="date">2/7</div>
-          <div class="icon">🌤</div>
-          <div class="max-temp">Max. 34°C</div>
-          <div class="min-temp">Min. 28°C</div>
-        </div>
-        <div class="col border border-2 border-warning">
-          <div class="day">Sat</div>
-          <div class="date">3/7</div>
-          <div class="icon">☀️</div>
-          <div class="max-temp">Max. 37°C</div>
-          <div class="min-temp">Min. 31°C</div>
-        </div>
-        <div class="col border border-2 border-warning">
-          <div class="day">Sun</div>
-          <div class="date">4/7</div>
-          <div class="icon">☀️</div>
-          <div class="max-temp">Max. 38°C</div>
-          <div class="min-temp">Min. 33°C</div>
-        </div>
-        <div class="col border border-2 border-warning">
-          <div class="day">Mon</div>
-          <div class="date">5/7</div>
-          <div class="icon">☀️</div>
-          <div class="max-temp">Max. 39°C</div>
-          <div class="min-temp">Min. 32°C</div>
+        <div class="weather-forecast">
+          <div class="row">
+            <div class="col-2" id="tomorrow-forecast">
+              <div class="weather-forecast-date">Thursday</div>
+              <img
+                src="http://openweathermap.org/img/wn/10d@2x.png"
+                alt="rainy"
+                width="45"
+              />
+              <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperature-max">18°</span>
+                <span class="weather-forecast-temperature-min">12°</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
