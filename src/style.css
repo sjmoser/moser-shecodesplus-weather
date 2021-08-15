@@ -63,6 +63,11 @@ footer {
 #weather-description {
   font-size: 20px;
 }
+
+#weather-description:first-letter {
+  text-transform: capitalize;
+}
+
 img {
   position: relative;
   max-height: 30%;
@@ -87,13 +92,11 @@ img {
   position: relative;
   top: -10px;
 }
-.celsius-link,
-.fahrenheit-link {
-  text-decoration: none;
+.weather-temperature .active {
+  cursor: default;
 }
-.celsius-link,
-.fahrenheit-link:hover {
-  text-decoration: underline;
+.weather-temperature .active:hover {
+  text-decoration: none;
 }
 .max-min {
   position: relative;

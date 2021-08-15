@@ -1,7 +1,8 @@
-function formatDate(date) {
-  let hour = date.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
   }
   let minutes = date.getMinutes();
   if (minutes < 10) {
@@ -18,10 +19,10 @@ function formatDate(date) {
     "Saturday",
   ];
   let day = days[dayIndex];
-  return `${day} ${hour}:${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 }
 
-function displayWeatherCondition(response) {
+function displayWeather(response) {
   let temperatureElement = document.querySelector("#current-temp");
   let cityElement = document.querySelector("#current-city");
   let dateElement = document.querySelector("#current-day-time");
@@ -32,11 +33,11 @@ function displayWeatherCondition(response) {
 
   celsiusTemperature = response.data.main.temp;
 
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  descriptionElement.innerHTML = response.data.weather[0].main;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   currentWeatherIconElement.setAttribute(
     "src",
@@ -48,16 +49,16 @@ function displayWeatherCondition(response) {
   );
 }
 
-function searchCity(city) {
+function search(city) {
   let apiKey = "6632ae1c5ce039c21cbcc5b78a4a6d00";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherCondition);
+  axios.get(apiUrl).then(displayWeather);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
 }
 
 function searchLocation(position) {
@@ -65,7 +66,7 @@ function searchLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherCondition);
+  axios.get(apiUrl).then(displayWeather);
 }
 
 function getCurrentLocation(event) {
@@ -73,22 +74,24 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temp");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
 function displayCelsiusTemperature(event) {
   event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#current-temp");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#current-temp");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-let dateElement = document.querySelector("#current-day-time");
-let currentTime = new Date();
-dateElement.innerHTML = formatDate(currentTime);
+let celsiusTemperature = null;
 
 let searchForm = document.querySelector("#city-form");
 searchForm.addEventListener("submit", handleSubmit);
@@ -102,4 +105,4 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
-searchCity("Tucson");
+search("Tucson");
