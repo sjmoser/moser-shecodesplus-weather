@@ -49,8 +49,8 @@ function searchCity(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
+  let cityInputElement = document.querySelector("#city-input").value;
+  searchCity(cityInputElement.value);
 }
 
 function searchLocation(position) {
@@ -75,10 +75,5 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentButton = document.querySelector("#current-info-button");
 currentButton.addEventListener("click", getCurrentLocation);
-
-iconElement.setAttribute(
-  "src",
-  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-);
 
 searchCity("Tucson");
