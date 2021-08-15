@@ -29,13 +29,11 @@
                 class="form-control"
                 placeholder="Enter city name"
                 id="city-input"
-                autocomplete="off"
               />
               <button
                 class="btn btn-outline-secondary btn-warning"
                 type="submit"
                 id="search-button"
-                value="search"
               >
                 Search
               </button>
@@ -58,21 +56,23 @@
       </div>
       <div class="row border border-2 border-warning">
         <div class="col-4">
-          <h1 class="current-city" id="current-city"></h1>
+          <h1 class="current-city" id="current-city">Tucson, AZ</h1>
           <h6 class="date-time">
-            <span id="current-day-time"></span>
+            <span id="current-day-time">Sunday 14:03</span>
           </h6>
-          <h6 id="weather-description"></h6>
+          <h6 id="weather-description">cloudy</h6>
           <h6 class="specifics">
-            <div>Humidity: <span id="humidity"></span>%</div>
-            <div>Wind: <span id="wind"></span> km/h</div>
+            <div>Humidity: <span id="humidity">43</span>%</div>
+            <div>Wind: <span id="wind">2</span> km/h</div>
           </h6>
         </div>
         <div class="col-4">
           <h2 class="current-temp">
-            <span id="current-temp">31</span><span class="units">°C</span
-            ><span class="units-bar"> | </span>
-            <span class="units">°F</span>
+            <span id="current-temp temperature">31</span
+            ><span class="units"
+              ><a href="#" id="celsius-link">°C</a> |
+              <a href="#" id="fahrenheit-link">°F</a></span
+            >
           </h2>
           <img
             src="http://openweathermap.org/img/wn/10d@2x.png"

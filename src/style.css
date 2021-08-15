@@ -87,6 +87,14 @@ img {
   position: relative;
   top: -10px;
 }
+.celsius-link,
+.fahrenheit-link {
+  text-decoration: none;
+}
+.celsius-link,
+.fahrenheit-link:hover {
+  text-decoration: underline;
+}
 .max-min {
   position: relative;
   top: -25px;
