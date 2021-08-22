@@ -93,9 +93,9 @@ a,
 }
 a:hover,
 #celsius-link.active,
-#celsius-link.active:hover,
+#celsius-link:hover,
 #fahrenheit-link.active,
-#fahrenheit-link.active:hover {
+#fahrenheit-link:hover {
   text-decoration: underline;
   cursor: pointer;
   opacity: 100%;
