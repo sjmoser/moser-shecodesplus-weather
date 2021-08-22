@@ -77,34 +77,12 @@ body {
   left: -10px;
   margin-top: 10px;
 }
-.units,
-.units-bar {
-  font-size: 15px;
+.units {
+  font-size: 25px;
   position: relative;
   top: -10px;
 }
-a,
-#celsius-link,
-#fahrenheit-link {
-  cursor: default;
-  text-decoration: underline;
-  color: #ea6e4b;
-  opacity: 75%;
-}
-#celsius-link:hover,
-#fahrenheit-link:hover {
-  text-decoration: underline;
-  cursor: pointer;
-  color: #2058ff;
-}
 
-a:hover,
-#celsius-link.active,
-#fahrenheit-link.active {
-  text-decoration: none;
-  cursor: pointer;
-  color: #2058ff;
-}
 .max-min {
   position: relative;
   top: -25px;

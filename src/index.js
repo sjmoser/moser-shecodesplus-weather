@@ -43,7 +43,7 @@ function displayForecast(response) {
                 forecastDay.dt
               )}</div>
               <img
-                src="http://openweathermap.org/img/wn/${
+                src="https://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
                 }.png"
                 alt="rainy"
@@ -67,7 +67,7 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   console.log(coordinates);
   let apiKey = "6632ae1c5ce039c21cbcc5b78a4a6d00";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -83,9 +83,9 @@ function displayWeather(response) {
   let maxTemperatureElement = document.querySelector("#max-temp");
   let minTemperatureElement = document.querySelector("#min-temp");
 
-  celsiusTemperature = response.data.main.temp;
+  temperature = response.data.main.temp;
 
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = Math.round(temperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
@@ -95,7 +95,7 @@ function displayWeather(response) {
   minTemperatureElement.innerHTML = Math.round(response.data.main.temp_min);
   currentWeatherIconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   currentWeatherIconElement.setAttribute(
     "alt",
@@ -116,7 +116,7 @@ function displayHourly(response) {
               <span class="time"></span><span class="temp"></span
               ><span class="hourly-icon"
                 ><img
-                  src="http://openweathermap.org/img/wn/${forecastHour.weather[0].icon}@2x.png"
+                  src="https://openweathermap.org/img/wn/${forecastHour.weather[0].icon}@2x.png"
                   alt=""
                   width="30"
               /></span>
@@ -130,7 +130,7 @@ function displayHourly(response) {
   let hourlyWeatherIconElement = document.querySelector("hourly-icon");
   hourlyWeatherIconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   currentWeatherIconElement.setAttribute(
     "alt",
@@ -143,7 +143,7 @@ function displayHourly(response) {
 
 function search(city) {
   let apiKey = "6632ae1c5ce039c21cbcc5b78a4a6d00";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeather);
 }
 
@@ -157,7 +157,7 @@ function searchLocation(position) {
   let apiKey = "6632ae1c5ce039c21cbcc5b78a4a6d00";
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeather);
 }
 
@@ -166,36 +166,11 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temp");
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#current-temp");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
 let searchForm = document.querySelector("#city-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentButton = document.querySelector("#current-info-button");
 currentButton.addEventListener("click", getCurrentLocation);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Tucson");
 displayForecast();
