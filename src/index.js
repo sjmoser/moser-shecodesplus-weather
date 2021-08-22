@@ -22,27 +22,43 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col-2" id="tomorrow-forecast">
-              <div class="weather-forecast-date">${day}</div>
+              <div class="weather-forecast-date">${formatDay(
+                forecastDay.dt
+              )}</div>
               <img
-                src="http://openweathermap.org/img/wn/10d@2x.png"
+                src="http://openweathermap.org/img/wn/${
+                  forecastDay.weather[0].icon
+                }.png"
                 alt="rainy"
                 width="45"
               />
               <div class="weather-forecast-temperatures">
-                <span class="weather-forecast-temperature-max">18°</span>
-                <span class="weather-forecast-temperature-min">12°</span>
+                <span class="weather-forecast-temperature-max">${Math.round(
+                  forecastDay.temp.max
+                )}°</span>
+                <span class="weather-forecast-temperature-min">${Math.round(
+                  forecastDay.temp.min
+                )}°</span>
               </div>
             </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -56,6 +72,7 @@ function getForecast(coordinates) {
 }
 
 function displayWeather(response) {
+  console.log(response.data.main.temp_max);
   let temperatureElement = document.querySelector("#current-temp");
   let cityElement = document.querySelector("#current-city");
   let dateElement = document.querySelector("#current-day-time");
@@ -63,6 +80,8 @@ function displayWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let currentWeatherIconElement = document.querySelector("#current-temp-icon");
+  let maxTemperatureElement = document.querySelector("#max-temp");
+  let minTemperatureElement = document.querySelector("#min-temp");
 
   celsiusTemperature = response.data.main.temp;
 
@@ -72,6 +91,8 @@ function displayWeather(response) {
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  maxTemperatureElement.innerHTML = Math.round(response.data.main.temp_max);
+  minTemperatureElement.innerHTML = Math.round(response.data.main.temp_min);
   currentWeatherIconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -82,6 +103,34 @@ function displayWeather(response) {
   );
 
   getForecast(response.data.coord);
+}
+
+function displayHourly(response) {
+  let hourlyForecast = response.data.hourly;
+  let hourlyForecastElement = document.querySelector("#hourly-forecast");
+  let hourlyForecastHTML = `<div class="clearfix">`;
+  hourlyForecast.forEach(function (forecastHour) {
+    hourlyForecastHTML =
+      hourlyForecastHTML +
+      `<div>
+              <span class="time"></span><span class="temp"></span
+              ><span class="hourly-icon"
+                ><img
+                  src="http://openweathermap.org/img/wn/${forecastHour.weather[0].icon}@2x.png"
+                  alt=""
+                  width="30"
+              /></span>
+            </div>
+`;
+  });
+  hourlyForecastHTML = hourlyForecastHTML + `</div>`;
+  hourlyForecast.innerHTML = hourlyForecastHTML;
+  let temperatureElement = document.querySelector("temp");
+  let city = search(city);
+  let currentWeatherIconElement = document.querySelector("hourly-icon");
+  let apiKey = "6632ae1c5ce039c21cbcc5b78a4a6d00";
+  let apiUrl = `pro.openweathermap.org/data/2.5/forecast/hourly?q=${city}&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayHourly);
 }
 
 function search(city) {
@@ -124,12 +173,6 @@ function displayCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#current-temp");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-function displayHourly() {
-  let apiKey = "6632ae1c5ce039c21cbcc5b78a4a6d00";
-  let apiUrl = `pro.openweathermap.org/data/2.5/forecast/hourly?q=${city}&appid=${apiKey}`;
-  axios.get(apiUrl).then(displayHourly);
 }
 
 let celsiusTemperature = null;

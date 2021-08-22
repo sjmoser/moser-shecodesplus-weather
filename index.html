@@ -54,6 +54,7 @@
         <div class="col-4">
           <h1 class="current-city" id="current-city"></h1>
           <h6 class="date-time">
+            Last updated:
             <span id="current-day-time"></span>
           </h6>
           <h6 id="weather-description"></h6>
@@ -76,54 +77,50 @@
             id="current-temp-icon"
           />
           <h6 class="max-min">
-            <ul>
-              <li>Max. 37°</li>
-              <li>Min. 29°</li>
-            </ul>
+            <div>Max. <span id="max-temp"></span>°</div>
+            <div>Min. <span id="min-temp"></span>°</div>
           </h6>
         </div>
-        <div class="col-4">
-          <h3 class="hourly-forecast">Hourly Forecast</h3>
-          <h4>
-            <ul>
-              <li>
-                <span class="time">18:00</span><span class="temp">30°</span
-                ><span class="hourly-icon"
-                  ><img
-                    src="http://openweathermap.org/img/wn/10d@2x.png"
-                    alt="rainy"
-                    width="30"
-                /></span>
-              </li>
-              <li>
-                <span class="time">19:00</span><span class="temp">32°</span
-                ><span class="hourly-icon"
-                  ><img
-                    src="http://openweathermap.org/img/wn/10d@2x.png"
-                    alt="rainy"
-                    width="30"
-                /></span>
-              </li>
-              <li>
-                <span class="time">20:00</span><span class="temp">34°</span
-                ><span class="hourly-icon"
-                  ><img
-                    src="http://openweathermap.org/img/wn/10d@2x.png"
-                    alt="rainy"
-                    width="30"
-                /></span>
-              </li>
-              <li>
-                <span class="time">21:00</span><span class="temp">33°</span
-                ><span class="hourly-icon"
-                  ><img
-                    src="http://openweathermap.org/img/wn/10d@2x.png"
-                    alt="rainy"
-                    width="30"
-                /></span>
-              </li>
-            </ul>
-          </h4>
+        <div class="col-4 hourly-forecast" id="hourly-forecast">
+          <h3 class="hourly-forecast-title">Hourly Forecast</h3>
+          <div class="clearfix">
+            <div>
+              <span class="time">18:00</span><span class="temp"> 30°</span
+              ><span class="hourly-icon"
+                ><img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="rainy"
+                  width="30"
+              /></span>
+            </div>
+            <div>
+              <span class="time">19:00</span><span class="temp"> 32°</span
+              ><span class="hourly-icon"
+                ><img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="rainy"
+                  width="30"
+              /></span>
+            </div>
+            <div>
+              <span class="time">20:00</span><span class="temp">34°</span
+              ><span class="hourly-icon"
+                ><img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="rainy"
+                  width="30"
+              /></span>
+            </div>
+            <div>
+              <span class="time">21:00</span><span class="temp"> 33°</span
+              ><span class="hourly-icon"
+                ><img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  alt="rainy"
+                  width="30"
+              /></span>
+            </div>
+          </div>
         </div>
         <div class="weather-forecast" id="weather-forecast">
           <div class="row">

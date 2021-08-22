@@ -35,20 +35,18 @@ body {
   color: #fff;
 }
 .current-city {
-  font-size: 29px;
+  font-size: 30px;
   position: relative;
   top: 5px;
   left: -2px;
+  color: #ea6e4b;
 }
 
 .specifics,
-.current-temp,
-.five-day,
 .temp,
 .day,
 .date,
-.max-temp,
-.min-temp,
+.max-min,
 .github-link {
   opacity: 0.5;
 }
@@ -67,7 +65,7 @@ body {
   max-height: 30%;
   text-align: center;
   display: inline;
-  left: 20px;
+  left: 35px;
   top: -20px;
   padding: 0;
   margin-top: 10px;
@@ -75,8 +73,8 @@ body {
 .current-temp {
   text-align: center;
   position: relative;
-  font-size: 32px;
-  left: -15px;
+  font-size: 40px;
+  left: -10px;
   margin-top: 10px;
 }
 .units,
@@ -91,7 +89,7 @@ a,
   cursor: default;
   text-decoration: underline;
   color: #ea6e4b;
-  opacity: 100%;
+  opacity: 75%;
 }
 #celsius-link:hover,
 #fahrenheit-link:hover {
@@ -110,39 +108,36 @@ a:hover,
 .max-min {
   position: relative;
   top: -25px;
-  left: 15px;
+  left: -10px;
+  margin-top: 9px;
   text-align: center;
   font-size: 20px;
 }
-.hourly-forecast {
+.hourly-forecast-title {
   position: relative;
-  left: 5px;
+  left: -5px;
   top: 5px;
   font-size: 25px;
   padding: 0;
-}
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
+  color: #ea6e4b;
 }
 .time {
   position: relative;
   top: 5px;
-  left: 5px;
+  line-height: 35px;
+  left: -5px;
   font-size: 22px;
 }
 .temp {
   position: relative;
   top: 5px;
-  left: 30px;
+  left: 25px;
   font-size: 20px;
 }
 .hourly-icon {
   position: relative;
   top: 5px;
-  left: 50px;
+  left: 45px;
   padding: 0;
   margin: 0;
 }
@@ -170,8 +165,9 @@ ul {
 }
 
 .weather-forecast-date {
+  color: #ea6e4b;
   font-size: 24px;
-  opacity: 0.5;
+  opacity: 75%;
 }
 
 .weather-forecast-temperatures {
