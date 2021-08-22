@@ -85,13 +85,17 @@ body {
   position: relative;
   top: -10px;
 }
-a {
+a,
+#celsius-link,
+#fahrenheit-link {
   cursor: default;
   text-decoration: none;
 }
 a:hover,
-.celsius-link .active:hover,
-.fahrenheit-link .active:hover {
+#celsius-link.active,
+#celsius-link.active:hover,
+#fahrenheit-link.active,
+#fahrenheit-link.active:hover {
   text-decoration: underline;
   cursor: pointer;
   opacity: 100%;
