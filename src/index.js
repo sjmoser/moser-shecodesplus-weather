@@ -127,7 +127,15 @@ function displayHourly(response) {
   hourlyForecast.innerHTML = hourlyForecastHTML;
   let temperatureElement = document.querySelector("temp");
   let city = search(city);
-  let currentWeatherIconElement = document.querySelector("hourly-icon");
+  let hourlyWeatherIconElement = document.querySelector("hourly-icon");
+  hourlyWeatherIconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  currentWeatherIconElement.setAttribute(
+    "alt",
+    response.data.weather[0].description
+  );
   let apiKey = "6632ae1c5ce039c21cbcc5b78a4a6d00";
   let apiUrl = `pro.openweathermap.org/data/2.5/forecast/hourly?q=${city}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayHourly);
