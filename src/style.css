@@ -2,6 +2,7 @@ body {
   font-family: "Akaya Kanadaka", cursive;
   max-width: 600px;
   color: #2058ff;
+  padding: 80px 40px;
 }
 .city {
   font-size: 20px;
